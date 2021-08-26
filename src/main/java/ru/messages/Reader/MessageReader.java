@@ -35,10 +35,11 @@ public class MessageReader {
                     if(!("".equals(text))) {
                         int count = 0;
                         //создание нового файла xml
-                        while (!(new File("SendXml\\newFile" + count + ".xml").createNewFile()))
+                        if(!(new File("ReadXml").mkdir()))
+                        while (!(new File("ReadXml\\newFile" + count + ".xml").createNewFile()))
                             count++;
                         //открытие файла с последующим заполнением
-                        File xmlFile = new File("SendXml\\newFile" + count + ".xml");
+                        File xmlFile = new File("ReadXml\\newFile" + count + ".xml");
                         FileWriter fw = new FileWriter(xmlFile);
                         BufferedWriter bw = new BufferedWriter(fw);
                         //заполнение файла кодом xml

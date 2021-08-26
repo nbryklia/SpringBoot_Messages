@@ -18,7 +18,9 @@ public class MessageSender {
     public static final String QUEUE_NAME = "QueueTest";
 
     //Входные параметры:
-    //url, по которому находится activeMQ, по умолчанию
+    //url, по которому находится activeMQ, по умолчанию "tcp://127.0.0.1:61616"
+    //название очереди, по умолчанию "QueueTest"
+    //путь файла, который надо отправить
     public static void Send(String url, String queueName, @NotNull String filePath) throws JMSException {
         System.out.println("********** Sending messages in activeMQ started.");
         if ((url == "" || url == null) && ("".equals(queueName) || queueName == null)) {
