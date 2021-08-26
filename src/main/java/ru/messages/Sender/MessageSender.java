@@ -14,14 +14,14 @@ import static ru.messages.Reader.XMLReader.Read;
 @Service
 public class MessageSender {
 
-    @Value("${ACTIVEMQ_URL:unknown}")
-    public static String ACTIVEMQ_URL;
-    @Value("${QUEUE_NAME:unknown}")
-    public static String QUEUE_NAME;
+    public static final String ACTIVEMQ_URL = "tcp://127.0.0.1:61616";
+    public static final String QUEUE_NAME = "QueueTest";
 
+    //Входные параметры:
+    //url, по которому находится activeMQ, по умолчанию
     public static void Send(String url, String queueName, @NotNull String filePath) throws JMSException {
         System.out.println("********** Sending messages in activeMQ started.");
-        if (("".equals(url) || url == null) && ("".equals(queueName) || queueName == null)) {
+        if ((url == "" || url == null) && ("".equals(queueName) || queueName == null)) {
             url = ACTIVEMQ_URL;
             queueName = QUEUE_NAME;
         }else {
@@ -63,7 +63,7 @@ public class MessageSender {
 
     public static void main(String[] args){
         try {
-            Send("tcp://127.0.0.1:61616", "QueueTest", "AcceptXml\\World.xml");
+            Send("", "QueueTest", "AcceptXml\\World.xml");
         }catch (JMSException e){
             System.out.println("Error");
             exit(1);

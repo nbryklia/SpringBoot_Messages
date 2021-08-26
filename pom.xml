@@ -6,7 +6,7 @@
 
     <groupId>ru.messages</groupId>
     <artifactId>SpringBoot_Messages</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>SpringBoot_Messages</name>
     <description>Spring Boot use CommandLineRunner</description>

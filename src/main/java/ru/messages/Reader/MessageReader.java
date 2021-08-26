@@ -10,6 +10,7 @@ import static java.lang.System.exit;
 @Service
 public class MessageReader {
 
+    //Входной параметр - название очереди
     public static void readQueue(String nameQueue) throws JMSException {
         String text;
         //создание фабрики для подключеник activeMQ
