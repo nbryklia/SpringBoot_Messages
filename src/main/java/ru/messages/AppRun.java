@@ -1,4 +1,4 @@
-package ru.messages.CommandLine;
+package ru.messages;
 
 import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -64,5 +64,4 @@ public class AppRun implements CommandLineRunner {
         else System.out.println("\"Send\" - отправить, \"Read\" - прочитать");
         exit(0); // завершаем программу
     }
-    public void kt(){}
 }
