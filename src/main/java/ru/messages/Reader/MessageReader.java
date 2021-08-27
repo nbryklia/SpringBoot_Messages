@@ -18,6 +18,8 @@ public class MessageReader {
         //создание очереди из сообщений
         Queue queue = session.createQueue(nameQueue);
         MessageConsumer consumer = session.createConsumer(queue);
+        //запуск соединения
+        con.start();
         consumer.setMessageListener(new MessageListener() {
             @Override
             public void onMessage(Message message) {
@@ -25,11 +27,10 @@ public class MessageReader {
                     TextMessage tm = (TextMessage) message;
                     if(!("".equals(tm.getText())) && tm.getText() != null) {
                         System.out.println("Message:\n " + tm.getText());
-                        try(FileOutputStream fos=new FileOutputStream("ReadXml/" + tm.getJMSMessageID().replaceAll(":", "") + ".xml")) {
+                        try(FileOutputStream fos=new FileOutputStream("ReadXml/" +
+                                tm.getJMSMessageID().replaceAll(":", "") + ".xml")) {
                             byte[] buffer = tm.getText().getBytes();
                             fos.write(buffer, 0, buffer.length);}
-                    }else{
-                        System.out.println("Messages is null");
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -37,8 +38,6 @@ public class MessageReader {
                 }
             }
         });
-        //запуск соединения
-        con.start();
         Thread.sleep(15000);
         con.close();
     }
