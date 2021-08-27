@@ -22,13 +22,12 @@ public class AppRun implements CommandLineRunner {
             // 0 - действие с сообщением, "Send" - отправить, "Read" - прочитать
             switch (args[0].toUpperCase(Locale.ROOT)) {
                 case "SEND": {
-                    if (args.length > 3) {
+                    if (args.length > 2) {
                         try {
                             //Передача следующих трех аргументов из командной строки в функцию
-                            //1 - url, где находится ActiveMQ, по умолчанию tcp://localhost:61616
-                            //2 - название очереди, куда отправляется сообщение, по умолчанию QueueTest
-                            //3 - путь файла *.xml
-                            send(args[1], args[2], args[3]);
+                            //1 - название очереди, куда отправляется сообщение, по умолчанию QueueTest
+                            //2 - путь файла *.xml
+                            send(args[1], args[2]);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

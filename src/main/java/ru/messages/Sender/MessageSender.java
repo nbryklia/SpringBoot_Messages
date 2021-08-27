@@ -17,20 +17,17 @@ public class MessageSender {
     //url, по которому находится activeMQ, по умолчанию "tcp://127.0.0.1:61616"
     //название очереди, по умолчанию "QueueTest"
     //путь файла, который надо отправить
-    public static void send(String url, String queueName, String filePath) throws JMSException {
+    public static void send(String queueName, String filePath) throws JMSException {
         System.out.println("********** Sending messages in activeMQ started.");
-        if ((url == "" || url == null) && ("".equals(queueName) || queueName == null)) {
-            url = ACTIVEMQ_URL;
+        if ("".equals(queueName) || queueName == null) {
             queueName = QUEUE_NAME;
         }else {
-            if ("".equals(url) || url == null)
-                url = ACTIVEMQ_URL;
             if("".equals(queueName) || queueName == null)
                 queueName = QUEUE_NAME;
         }
         // 1 Создаем фабрику соединений, используем имя пользователя и пароль по умолчанию,
         // и кодировка больше не отображается
-        ConnectionFactory ConnectionFactory = new ActiveMQConnectionFactory(url);
+        ConnectionFactory ConnectionFactory = new ActiveMQConnectionFactory(ACTIVEMQ_URL);
         // 2 Подключаемся и начинаем
         System.out.println("********** connecting to ActiveMQ.");
         Connection connection = ConnectionFactory.createConnection();
@@ -61,7 +58,7 @@ public class MessageSender {
 
     public static void main(String[] args){
         try {
-            send("", "QueueTest", "AcceptXml\\World.xml");
+            send("QueueTest", "AcceptXml\\World.xml");
         }catch (JMSException e){
             System.out.println("Error");
             exit(1);
