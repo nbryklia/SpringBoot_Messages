@@ -22,7 +22,6 @@ public class AppRun implements CommandLineRunner {
             // 0 - действие с сообщением, "Send" - отправить, "Read" - прочитать
             switch (args[0].toUpperCase(Locale.ROOT)) {
                 case "SEND": {
-                    System.out.println(args.length);
                     if (args.length > 3) {
                         try {
                             //Передача следующих трех аргументов из командной строки в функцию
@@ -39,7 +38,6 @@ public class AppRun implements CommandLineRunner {
                     break;
                 }
                 case "READ": {
-                    System.out.println(args.length);
                     if (args.length > 1) {
                         try {
                             //Передача следующего одного аргумента из командной строки в функцию
