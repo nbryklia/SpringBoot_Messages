@@ -4,9 +4,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.util.Locale;
-import static ru.messages.Sender.MessageSender.send;
-import static ru.messages.Reader.MessageReader.readQueue;
 import static java.lang.System.exit;
+import static ru.messages.Reader.MessageReader.readQueue;
+import static ru.messages.Sender.MessageSender.send;
 
 @SpringBootApplication
 public class AppRun implements CommandLineRunner {
@@ -16,12 +16,13 @@ public class AppRun implements CommandLineRunner {
     }
 
     @Override
-    public void run (String[] args) {
+    public void run(String... args) {
         if (args.length > 0) {
             //Передача первого аргумента коммандной строки
             // 0 - действие с сообщением, "Send" - отправить, "Read" - прочитать
             switch (args[0].toUpperCase(Locale.ROOT)) {
                 case "SEND": {
+                    System.out.println(args.length);
                     if (args.length > 3) {
                         try {
                             //Передача следующих трех аргументов из командной строки в функцию
@@ -38,6 +39,7 @@ public class AppRun implements CommandLineRunner {
                     break;
                 }
                 case "READ": {
+                    System.out.println(args.length);
                     if (args.length > 1) {
                         try {
                             //Передача следующего одного аргумента из командной строки в функцию
@@ -55,8 +57,8 @@ public class AppRun implements CommandLineRunner {
                     System.out.println("\"Send\" - отправить, \"Read\" - прочитать");
                     break;
             }
-        }
-        else System.out.println("\"Send\" - отправить, \"Read\" - прочитать");
-        exit(0); // завершаем программу
+        } else System.out.println("\"Send\" - отправить, \"Read\" - прочитать");
+        // завершаем программу
+        exit(0);
     }
 }

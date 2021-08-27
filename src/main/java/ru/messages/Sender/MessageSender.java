@@ -1,7 +1,6 @@
 package ru.messages.Sender;
 
 import javax.jms.*;
-import com.sun.istack.NotNull;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.springframework.stereotype.Service;
 import java.io.FileNotFoundException;
@@ -18,7 +17,7 @@ public class MessageSender {
     //url, по которому находится activeMQ, по умолчанию "tcp://127.0.0.1:61616"
     //название очереди, по умолчанию "QueueTest"
     //путь файла, который надо отправить
-    public static void send(String url, String queueName, @NotNull String filePath) throws JMSException {
+    public static void send(String url, String queueName, String filePath) throws JMSException {
         System.out.println("********** Sending messages in activeMQ started.");
         if ((url == "" || url == null) && ("".equals(queueName) || queueName == null)) {
             url = ACTIVEMQ_URL;
