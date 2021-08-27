@@ -1,11 +1,10 @@
 package ru.messages;
 
-import org.springframework.boot.*;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 import java.util.Locale;
-
-import static ru.messages.Sender.MessageSender.Send;
+import static ru.messages.Sender.MessageSender.send;
 import static ru.messages.Reader.MessageReader.readQueue;
 import static java.lang.System.exit;
 
@@ -13,11 +12,7 @@ import static java.lang.System.exit;
 public class AppRun implements CommandLineRunner {
 
     public static void main(String[] args){
-        //args = new String[]{"send","tcp://127.0.0.1:6161", "QueueTest", "D:\\SpringBoot\\AcceptXml\\app.xml"};
-        SpringApplication app = new SpringApplication(AppRun.class);
-        //отключаем баннер
-        app.setBannerMode(Banner.Mode.OFF);
-        app.run(args);
+        SpringApplication.run(AppRun.class, args);
     }
 
     @Override
@@ -33,7 +28,7 @@ public class AppRun implements CommandLineRunner {
                             //1 - url, где находится ActiveMQ, по умолчанию tcp://localhost:61616
                             //2 - название очереди, куда отправляется сообщение, по умолчанию QueueTest
                             //3 - путь файла *.xml
-                            Send(args[1], args[2], args[3]);
+                            send(args[1], args[2], args[3]);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

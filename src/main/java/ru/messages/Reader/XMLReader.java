@@ -5,7 +5,7 @@ import java.io.*;
 public class XMLReader {
 
     //метод для прочтения файла
-    public static String Read(String filePath) throws FileNotFoundException {
+    public static String read(String filePath) throws FileNotFoundException {
         File xmlFile;
         //переменная для хранения текста сообщения
         String text = "";
@@ -27,7 +27,7 @@ public class XMLReader {
 
     public static void main(String[] args){
         try {
-            System.out.print(Read("AcceptXml\\World.xml"));
+            System.out.print(read("AcceptXml\\World.xml"));
         }catch (FileNotFoundException e){
             e.printStackTrace();
         }

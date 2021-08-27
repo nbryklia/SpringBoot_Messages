@@ -1,15 +1,12 @@
 package ru.messages.Sender;
 
 import javax.jms.*;
-
 import com.sun.istack.NotNull;
 import org.apache.activemq.ActiveMQConnectionFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import java.io.FileNotFoundException;
-
 import static java.lang.System.exit;
-import static ru.messages.Reader.XMLReader.Read;
+import static ru.messages.Reader.XMLReader.read;
 
 @Service
 public class MessageSender {
@@ -21,7 +18,7 @@ public class MessageSender {
     //url, по которому находится activeMQ, по умолчанию "tcp://127.0.0.1:61616"
     //название очереди, по умолчанию "QueueTest"
     //путь файла, который надо отправить
-    public static void Send(String url, String queueName, @NotNull String filePath) throws JMSException {
+    public static void send(String url, String queueName, @NotNull String filePath) throws JMSException {
         System.out.println("********** Sending messages in activeMQ started.");
         if ((url == "" || url == null) && ("".equals(queueName) || queueName == null)) {
             url = ACTIVEMQ_URL;
@@ -52,7 +49,7 @@ public class MessageSender {
         // 6 отправка сообщения с кодом xml файла в MQ в очередь с именем queueName
         System.out.println("********** Message is sending.");
         try {
-            messageProducer.send(session.createTextMessage(Read(filePath)));
+            messageProducer.send(session.createTextMessage(read(filePath)));
         }catch (FileNotFoundException e){
             e.printStackTrace();
         }
@@ -65,7 +62,7 @@ public class MessageSender {
 
     public static void main(String[] args){
         try {
-            Send("", "QueueTest", "AcceptXml\\World.xml");
+            send("", "QueueTest", "AcceptXml\\World.xml");
         }catch (JMSException e){
             System.out.println("Error");
             exit(1);
